@@ -287,7 +287,7 @@ BMP_SHIELD_DL5,
 BMP_SHIELD_DL6,
 BMP_SHIELD_DL7,
 BMP_SHIELD_DL8,
-SHIELD_BMPS /*22*/
+SHIELD_BMPS  = 24 /* it was 22, but it's the size of an array of which 8+16 elements are needed */
 };
 
 enum
