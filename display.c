@@ -109,7 +109,7 @@ BITMAP *redbang_bmp [50];
 RLE_SPRITE *light_rle [100];
 
 BITMAP *superjelly_bmp [2];
-BITMAP *shield_bmp [SHIELD_BMPS];
+BITMAP *shield_bmp [SHIELD_BMPS]; /*22*/
 RLE_SPRITE *waver1_circle;
 RLE_SPRITE *waver2_circle;
 
@@ -575,11 +575,11 @@ void draw_an_actor(BITMAP *bmp, int dr, int x, int y, int play)
   x1 = actor[dr].shield_pulse;
   if (actor[dr].shield_pulse > 7)
    x1 = 7;
-  x1 = grand(x1 + 1);
+  x1 = grand(x1 + 1); /* stuff.c; randomness. this result should never be >= 6 because shield_bmp[6,7] == NULL */
   x2 = x + grand(3) - grand(3);
   y2 = y + grand(3) - grand(3);
   draw_trans_sprite(bmp, small4_bmp [BMP_SMALL4_SHIELD_1 + x1], x2 - 10, y2 - 10);
-  draw_trans_sprite(bmp, shield_bmp [x1], x2, y2 - 10);
+  draw_trans_sprite(bmp, shield_bmp [x1], x2, y2 - 10); /* SEGFAULT x1 = 6, x2 = 402, y2 = 299*/
   draw_trans_sprite(bmp, shield_bmp [x1 + 8], x2, y2);
   draw_trans_sprite(bmp, shield_bmp [x1 + 16], x2 - 10, y2);
 /*  draw_trans_sprite(bmp, small4_bmp [BMP_SMALL4_SHIELD_1 + grand(x1 + 1)], x - 10, y - 10);

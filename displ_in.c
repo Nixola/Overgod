@@ -709,7 +709,7 @@ progress_update("More Vehicles");
  make_bmp_small4(temp_bitmap, BMP_SMALL4_BEYE_7, 10, 10);*/
  destroy_bitmap(temp_bitmap);
 
- for (i = 0; i < 8; i ++)
+ for (i = 0; i < 8; i ++) /* PATCH: i < 6 */
  {
   shield_bmp [i] = create_bitmap(10, 10);
   if (shield_bmp [i] == NULL)
