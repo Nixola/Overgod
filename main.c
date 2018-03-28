@@ -101,8 +101,8 @@ display.h
 
 //#include <conio.h>
 #include <string.h>
-//#include <stdlib.h>
-//#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 //#include <pc.h>
 #include <math.h>
 
@@ -253,8 +253,14 @@ void init_at_startup(void)
    install_int (tickover, 30);
 
    set_color_depth(8);
-
-   set_config_file("overgod.cfg");
+   
+   char *home, config_file[4096];
+   home = getenv("HOME");
+   if(!home)
+     home = ".";
+   snprintf(config_file, 4095, "%s/.overgod.cfg", home);
+   config_file[4095] = '\0';
+   set_config_file(config_file);
 
    options.resolution = get_config_int("Options", "Resolution", 0);
    
